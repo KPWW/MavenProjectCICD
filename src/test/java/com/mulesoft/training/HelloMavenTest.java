@@ -8,10 +8,10 @@ import org.mule.tck.junit4.FunctionalTestCase;
 
 public class HelloMavenTest extends FunctionalTestCase {
 
-    /* @Test
+    @Test
     public void mavenFlowReturnsHelloMaven() throws Exception {
-        runFlowAndExpect("mavenFlow", "Hello Maven");
-    } */
+        runFlowAndExpect("maven-projectFlow", "Hello Maven");
+    }
     
     @Test
     public void retrieveFlightsAddsAppropriateHeader() throws Exception {

@@ -30,7 +30,7 @@ http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/m
 	<flow name="maven-projectFlow" initialState="started">
 		<http:listener config-ref="HTTP_Listener_Configuration" path="/hello" allowedMethods="GET" doc:name="HTTP" />
         <set-variable variableName="str" value="#[&quot;MuleCICD&quot;]" doc:name="Variable"/>
-		<set-payload value="#['Hello World']" doc:name="Set Payload" />
+		<set-payload value="#['Hello Maven']" doc:name="Set Payload" />
 	</flow>
 
 	<flow name="retrieveFlights">
@@ -39,6 +39,7 @@ http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/m
 			<db:parameterized-query><![CDATA[SELECT PRICE, DESTINATION, ORIGIN FROM flights]]></db:parameterized-query>
 		</db:select>
 		<json:object-to-json-transformer doc:name="Object to JSON" />
+        <set-property propertyName="#[Content-Type]" value="#['application/json']" doc:name="Property"/>
 		<jms:outbound-endpoint queue="flights" connector-ref="Active_MQ" doc:name="JMS" />
 	</flow>
 
